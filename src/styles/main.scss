@@ -1,0 +1,77 @@
+.main {
+    .main-header {
+        .name {
+            font-size: 3rem;
+            font-weight: 300;
+        }
+    }
+
+    .reactive-link:hover {
+        color: #3d9fc5;
+        transition: color 0.07s;
+    }
+
+    .main-nav {
+        border-top: 1px solid $clr-border;
+        border-bottom: 1px solid $clr-border;
+        margin-top: $size-xlarge;
+        padding: $size-small;
+        @extend .flex;
+        @extend .align-center;
+    }
+
+    .contact-section {
+        max-width: 500px;
+        margin: 6rem auto;
+
+        label {
+            display: block;
+            margin-top: $size-medium;
+            margin-bottom: $size-small;
+        }
+
+        input {
+            width: 100%;
+        }
+
+        textarea {
+            resize: vertical;
+            width: 100%;
+            min-height: 200px;
+            font-family: inherit;
+        }
+
+        input,
+        textarea {
+            border-radius: 4px;
+            border: 1px solid $clr-border;
+            font-weight: 300;
+            font-size: 1.25em;
+            padding: $size-medium;
+            transition: border-color 0.2s;
+
+            &:focus-visible {
+                outline: none;
+                border-color: $clr-active;
+                caret-color: $clr-active;
+            }
+
+            &.invalid-input {
+                border-color: $clr-danger;
+                caret-color: $clr-danger;
+            }
+        }
+
+        .btn-send {
+            margin-top: $size-small;
+            @extend .flex;
+            @extend .fs-large;
+            @extend .reactive-link;
+        }
+    }
+
+    .main-footer {
+        border-top: 1px solid $clr-border;
+        @extend .p-medium;
+    }
+}
