@@ -1,5 +1,8 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+require('dotenv').config();
 
 module.exports = {
     entry: './src/main.tsx',
@@ -45,6 +48,13 @@ module.exports = {
         path: path.resolve(__dirname, 'build'),
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                EMAILJS_SERVICEID: JSON.stringify(process.env.EMAILJS_SERVICEID),
+                EMAILJS_TEMPLATEID: JSON.stringify(process.env.EMAILJS_TEMPLATEID),
+                EMAILJS_USERID: JSON.stringify(process.env.EMAILJS_USERID),
+            },
+        }),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'public', 'index.html'),
         }),
