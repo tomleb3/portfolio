@@ -12,6 +12,7 @@
         "removeComments": false,
         "esModuleInterop": true,
         "sourceMap": false,
+        "moduleResolution": "Node",
         "baseUrl": "src/",
         "target": "es5",
         "outDir": "build",
@@ -21,5 +22,6 @@
             "react-dom": ["../node_modules/preact/compat"]
         }
     },
+    "files": ["globals.d.ts"],
     "include": ["src/**/*"]
 }

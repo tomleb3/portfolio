@@ -4,9 +4,19 @@ import { render } from 'react-dom';
 import './index.scss';
 import Typewriter from 'typewriter-effect';
 import emailjs from 'emailjs-com';
-import { icons } from './icons';
 import { useClickCounter } from './hooks';
 import { assertUnreachable, sleep } from './utils';
+import {
+    EmailIcon,
+    GithubIcon,
+    LinkedinIcon,
+    LocationIcon,
+    NameTagIcon,
+    NpmIcon,
+    PhoneIcon,
+    SpinnerIcon,
+    StackOverflowIcon,
+} from './icons';
 
 function Header() {
     const [state, setState] = useState<'initial' | 'annoyed'>('initial');
@@ -58,16 +68,7 @@ function Nav() {
             </div>
             <div>
                 <a href='https://www.github.com/tomleb3' aria-label='Github' target='_blank' rel='noopener noreferrer'>
-                    {icons.github}
-                </a>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <a
-                    href='https://www.linkedin.com/in/tomleb/'
-                    aria-label='Linkedin'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                >
-                    {icons.linkedin}
+                    <GithubIcon size={1.5} />
                 </a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <a
@@ -76,34 +77,43 @@ function Nav() {
                     target='_blank'
                     rel='noopener noreferrer'
                 >
-                    {icons.stackOverflow}
+                    <StackOverflowIcon size={1.5} />
+                </a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a
+                    href='https://www.linkedin.com/in/tomleb/'
+                    aria-label='Linkedin'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                >
+                    <LinkedinIcon size={1.5} />
                 </a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <a href='https://www.npmjs.com/~tomleb' aria-label='NPM' target='_blank' rel='noopener noreferrer'>
-                    {icons.npm}
+                    <NpmIcon size={1.5} />
                 </a>
             </div>
         </nav>
     );
 }
 
-function Contact() {
-    type FieldValidityStatus = 'no_input' | 'pattern_mismatch' | 'valid';
-    interface ContactField {
-        readonly text: string | null;
-        readonly validityStatus: FieldValidityStatus;
-    }
-    interface ContactFields {
-        readonly senderName: ContactField;
-        readonly senderEmail: ContactField;
-        readonly message: ContactField;
-    }
-    type State = ContactFields & {
-        readonly sendState:
-            | { readonly status: 'initial' | 'sending' | 'sending_succeeded' }
-            | { readonly status: 'sending_failed'; readonly error: any };
-    };
+type FieldValidityStatus = 'no_input' | 'pattern_mismatch' | 'valid';
+interface ContactField {
+    readonly text: string | null;
+    readonly validityStatus: FieldValidityStatus;
+}
+interface ContactFields {
+    readonly senderName: ContactField;
+    readonly senderEmail: ContactField;
+    readonly message: ContactField;
+}
+type State = ContactFields & {
+    readonly sendState:
+        | { readonly status: 'initial' | 'sending' | 'sending_succeeded' }
+        | { readonly status: 'sending_failed'; readonly error: any };
+};
 
+function Contact() {
     const blankMessageField: ContactField = useMemo(
         () => ({
             text: null,
@@ -278,7 +288,12 @@ function Contact() {
             break;
 
         case 'sending':
-            sendButtonContent = <>{icons.spinner}&nbsp;Send</>;
+            sendButtonContent = (
+                <>
+                    <SpinnerIcon />
+                    &nbsp;Send
+                </>
+            );
             break;
 
         case 'sending_succeeded':
@@ -342,23 +357,27 @@ function Contact() {
 }
 
 function Footer() {
-    const click = useClickCounter(5, () => alert('HA!'));
-
     return (
         <footer className='main-footer'>
-            <div className='flex align-center' onClick={click}>
-                {icons.nameTag}&nbsp;&nbsp;&nbsp;&nbsp;Tom Lebeodkin
+            <div className='flex align-center'>
+                <NameTagIcon size={1.2} />
+                &nbsp;&nbsp;&nbsp;&nbsp;Tom Lebeodkin
             </div>
             <br />
             <a href='tel:+972545323660' className='flex align-center reactive-link'>
-                {icons.phone}&nbsp;&nbsp;&nbsp;&nbsp;+972 54 5323660
+                <PhoneIcon size={1.2} />
+                &nbsp;&nbsp;&nbsp;&nbsp;+972 54 5323660
             </a>
             <br />
             <a href='mailto:tomleb3@gmail.com' className='flex align-center reactive-link'>
-                {icons.email}&nbsp;&nbsp;&nbsp;&nbsp;tomleb3@gmail.com
+                <EmailIcon size={1.2} />
+                &nbsp;&nbsp;&nbsp;&nbsp;tomleb3@gmail.com
             </a>
             <br />
-            <div className='flex align-center'>{icons.location}&nbsp;&nbsp;&nbsp;&nbsp;Israel / remote</div>
+            <div className='flex align-center'>
+                <LocationIcon size={1.2} />
+                &nbsp;&nbsp;&nbsp;&nbsp;Israel / remote
+            </div>
         </footer>
     );
 }
