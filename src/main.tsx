@@ -52,7 +52,9 @@ function Header() {
                     <span onClick={click}>{titleMarkup}</span>
                 </a>
             </h1>
-            <span className='header-subtitle'>Web developer &lt;/&gt;</span>
+            <span className='header-subtitle'>
+                Web developer<span className='clr-active'>&nbsp;&lt;/&gt;</span>
+            </span>
         </header>
     );
 }
