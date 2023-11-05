@@ -19,17 +19,18 @@ import {
 } from './icons';
 
 function Header() {
-    const [state, setState] = useState<'initial' | 'annoyed'>('initial');
+    const [state, setState] = useState<'relaxed' | 'annoyed'>('relaxed');
 
     const click = useClickCounter(7, () => setState('annoyed'));
 
+    const typeWriterText = 'Tom Lebeodkin';
     let titleMarkup: React.JSX.Element;
     switch (state) {
-        case 'initial':
+        case 'relaxed':
             titleMarkup = (
                 <Typewriter
                     onInit={typewriter => {
-                        typewriter.typeString('Tom Lebeodkin').start();
+                        typewriter.typeString(typeWriterText).start();
                     }}
                 />
             );
@@ -37,6 +38,7 @@ function Header() {
 
         case 'annoyed':
             titleMarkup = <>Please stop that...</>;
+            sleep(3000).then(() => setState('relaxed'));
             break;
 
         default:
