@@ -23,10 +23,10 @@ function Header() {
 
     const click = useClickCounter(7, () => setState('annoyed'));
 
-    let headerMarkup: React.JSX.Element;
+    let titleMarkup: React.JSX.Element;
     switch (state) {
         case 'initial':
-            headerMarkup = (
+            titleMarkup = (
                 <Typewriter
                     onInit={typewriter => {
                         typewriter.typeString('Tom Lebeodkin').start();
@@ -36,7 +36,7 @@ function Header() {
             break;
 
         case 'annoyed':
-            headerMarkup = <>Please stop that...</>;
+            titleMarkup = <>Please stop that...</>;
             break;
 
         default:
@@ -45,11 +45,12 @@ function Header() {
 
     return (
         <header className='main-header t-center'>
-            <h1 className='name fs-xlarge'>
+            <h1 className='header-title'>
                 <a href='#'>
-                    <span onClick={click}>{headerMarkup}</span>
+                    <span onClick={click}>{titleMarkup}</span>
                 </a>
             </h1>
+            <span className='header-subtitle'>Web developer &lt;/&gt;</span>
         </header>
     );
 }

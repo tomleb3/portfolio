@@ -1,8 +1,14 @@
 .main {
     .main-header {
-        .name {
-            font-size: 3rem;
+        .header-title {
+            font-size: 3em;
             font-weight: 300;
+        }
+
+        .header-subtitle {
+            display: block;
+            font-size: 1.5em;
+            margin-top: 1rem;
         }
     }
 
