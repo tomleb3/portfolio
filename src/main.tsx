@@ -415,7 +415,4 @@ function Main() {
     );
 }
 
-const container = document.createElement('div');
-container.id = 'root';
-document.body.appendChild(container);
-render(<Main />, container);
+render(<Main />, document.body);
