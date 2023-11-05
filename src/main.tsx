@@ -57,42 +57,41 @@ function Header() {
 function Nav() {
     return (
         <nav className='main-nav'>
-            <div className='grow'>
-                <a href='#about' className='reactive-link'>
-                    About
+            {/* <div>
+                <a href='#posts' className='reactive-link'>
+                    Posts
                 </a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <a href='#contact' className='reactive-link'>
                     Contact
                 </a>
-            </div>
-            <div>
-                <a href='https://www.github.com/tomleb3' aria-label='Github' target='_blank' rel='noopener noreferrer'>
-                    <GithubIcon size={1.5} />
-                </a>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <a
-                    href='https://stackoverflow.com/users/15169145/tomleb'
-                    aria-label='Stack Overflow'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                >
-                    <StackOverflowIcon size={1.5} />
-                </a>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <a
-                    href='https://www.linkedin.com/in/tomleb/'
-                    aria-label='Linkedin'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                >
-                    <LinkedinIcon size={1.5} />
-                </a>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <a href='https://www.npmjs.com/~tomleb' aria-label='NPM' target='_blank' rel='noopener noreferrer'>
-                    <NpmIcon size={1.5} />
-                </a>
-            </div>
+            </div> */}
+            <div className='grow'></div>
+            <a href='https://www.github.com/tomleb3' aria-label='Github' target='_blank' rel='noopener noreferrer'>
+                <GithubIcon size={1.5} />
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a
+                href='https://stackoverflow.com/users/15169145/tomleb'
+                aria-label='Stack Overflow'
+                target='_blank'
+                rel='noopener noreferrer'
+            >
+                <StackOverflowIcon size={1.5} />
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a
+                href='https://www.linkedin.com/in/tomleb/'
+                aria-label='Linkedin'
+                target='_blank'
+                rel='noopener noreferrer'
+            >
+                <LinkedinIcon size={1.5} />
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href='https://www.npmjs.com/~tomleb' aria-label='NPM' target='_blank' rel='noopener noreferrer'>
+                <NpmIcon size={1.5} />
+            </a>
         </nav>
     );
 }
