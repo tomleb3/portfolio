@@ -68,6 +68,11 @@
             }
         }
 
+        .validity-status-user-message {
+            white-space: pre-line;
+            @extend .t-danger;
+        }
+
         .btn-send {
             margin-top: $size-small;
             @extend .flex;

@@ -101,7 +101,9 @@ function Nav() {
     );
 }
 
-type FieldValidityStatus = 'no_input' | 'pattern_mismatch' | 'valid';
+type FieldValidityStatus =
+    | { readonly status: 'no_input' | 'valid' }
+    | { readonly status: 'pattern_mismatch'; readonly expectedPattern: string };
 interface ContactField {
     readonly text: string | null;
     readonly validityStatus: FieldValidityStatus;
@@ -121,7 +123,7 @@ function Contact() {
     const blankMessageField: ContactField = useMemo(
         () => ({
             text: null,
-            validityStatus: 'valid',
+            validityStatus: { status: 'valid' },
         }),
         [],
     );
@@ -149,7 +151,7 @@ function Contact() {
         const updatedMessageField: ContactField = {
             text: ev.currentTarget.value,
             // Only validate on form submit to avoid prematurely displaying negative feedback.
-            validityStatus: 'valid',
+            validityStatus: { status: 'valid' },
         };
         setState(prev => {
             const updatedState: State = {
@@ -164,23 +166,23 @@ function Contact() {
         const { senderName, senderEmail, message } = state;
         let senderNameValidityStatus: FieldValidityStatus;
         if (senderName.text === null || senderName.text === '') {
-            senderNameValidityStatus = 'no_input';
+            senderNameValidityStatus = { status: 'no_input' };
         } else {
-            senderNameValidityStatus = 'valid';
+            senderNameValidityStatus = { status: 'valid' };
         }
         let senderEmailValidityStatus: FieldValidityStatus;
         if (senderEmail.text === null || senderEmail.text === '') {
-            senderEmailValidityStatus = 'no_input';
+            senderEmailValidityStatus = { status: 'no_input' };
         } else if (!emailPattern.test(senderEmail.text)) {
-            senderEmailValidityStatus = 'pattern_mismatch';
+            senderEmailValidityStatus = { status: 'pattern_mismatch', expectedPattern: 'example@test.com' };
         } else {
-            senderEmailValidityStatus = 'valid';
+            senderEmailValidityStatus = { status: 'valid' };
         }
         let messageValidityStatus: FieldValidityStatus;
         if (message.text === null || message.text === '') {
-            messageValidityStatus = 'no_input';
+            messageValidityStatus = { status: 'no_input' };
         } else {
-            messageValidityStatus = 'valid';
+            messageValidityStatus = { status: 'valid' };
         }
         setState(prev => {
             const newState: State = {
@@ -202,9 +204,9 @@ function Contact() {
         });
 
         return (
-            senderNameValidityStatus === 'valid' &&
-            senderEmailValidityStatus === 'valid' &&
-            messageValidityStatus === 'valid'
+            senderNameValidityStatus.status === 'valid' &&
+            senderEmailValidityStatus.status === 'valid' &&
+            messageValidityStatus.status === 'valid'
         );
     };
 
@@ -267,7 +269,7 @@ function Contact() {
     const ValidityStatusUserMessage = ({ field }: { readonly field: ContactField }) => {
         let message: string | null;
 
-        switch (field.validityStatus) {
+        switch (field.validityStatus.status) {
             case 'valid':
                 message = null;
                 break;
@@ -276,13 +278,13 @@ function Contact() {
                 break;
             case 'pattern_mismatch':
                 // TODO: come up with better text
-                message = 'Must match the pattern of the field';
+                message = `Must match the pattern of the field.\nFor example: ${field.validityStatus.expectedPattern}`;
                 break;
             default:
                 assertUnreachable(field.validityStatus);
         }
 
-        return <p className={['t-danger', message === null ? 'v-hidden' : ''].join(' ')}>{message}</p>;
+        return <p className={message === null ? 'v-hidden' : 'validity-status-user-message'}>{message}</p>;
     };
 
     let sendButtonContent: React.JSX.Element | string;
@@ -330,7 +332,7 @@ function Contact() {
                 <input
                     type='text'
                     name='senderName'
-                    className={state.senderName.validityStatus !== 'valid' ? 'invalid-input' : ''}
+                    className={state.senderName.validityStatus.status !== 'valid' ? 'invalid-input' : ''}
                     value={state.senderName.text ?? ''}
                     onChange={handleChange}
                 />
@@ -339,7 +341,7 @@ function Contact() {
                 <input
                     type='email'
                     name='senderEmail'
-                    className={state.senderEmail.validityStatus !== 'valid' ? 'invalid-input' : ''}
+                    className={state.senderEmail.validityStatus.status !== 'valid' ? 'invalid-input' : ''}
                     value={state.senderEmail.text ?? ''}
                     onChange={handleChange}
                 />
@@ -347,7 +349,7 @@ function Contact() {
                 <label htmlFor='message'>Message</label>
                 <textarea
                     name='message'
-                    className={state.message.validityStatus !== 'valid' ? 'invalid-input' : ''}
+                    className={state.message.validityStatus.status !== 'valid' ? 'invalid-input' : ''}
                     value={state.message.text ?? ''}
                     onChange={handleChange}
                 />
