@@ -28,7 +28,11 @@
 
     .contact-section {
         max-width: 500px;
-        margin: 6rem auto;
+        margin: 3rem auto;
+
+        @media (min-width: $breakpoint-tablet) {
+            margin: 6rem auto;
+        }
 
         label {
             display: block;
