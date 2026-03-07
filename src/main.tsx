@@ -1,5 +1,5 @@
-import React, { ChangeEvent, useEffect, useMemo, useState } from 'react';
-import { render } from 'react-dom';
+import React, { useEffect, useMemo, useState, type ChangeEvent } from 'react';
+import { createRoot } from 'react-dom/client';
 
 import './index.scss';
 import Typewriter from 'typewriter-effect';
@@ -71,7 +71,7 @@ function Nav() {
                     Contact
                 </a>
             </div> */}
-            <div className='grow'></div>
+            <div className='grow' />
             <a href='https://www.github.com/tomleb3' aria-label='Github' target='_blank' rel='noopener noreferrer'>
                 <GithubIcon size={1.5} />
             </a>
@@ -417,4 +417,4 @@ function Main() {
     );
 }
 
-render(<Main />, document.body);
+createRoot(document.body).render(<Main />);
