@@ -1,3 +1,6 @@
+@use 'base/variables' as variables;
+@use 'base/helpers';
+
 .main {
     .main-header {
         .header-title {
@@ -18,10 +21,10 @@
     }
 
     .main-nav {
-        border-top: 1px solid $clr-border;
-        border-bottom: 1px solid $clr-border;
-        margin-top: $size-xlarge;
-        padding: $size-small;
+        border-top: 1px solid variables.$clr-border;
+        border-bottom: 1px solid variables.$clr-border;
+        margin-top: variables.$size-xlarge;
+        padding: variables.$size-small;
         @extend .flex;
         @extend .align-center;
     }
@@ -30,14 +33,14 @@
         max-width: 500px;
         margin: 3rem auto;
 
-        @media (min-width: $breakpoint-tablet) {
+        @media (min-width: variables.$breakpoint-tablet) {
             margin: 6rem auto;
         }
 
         label {
             display: block;
-            margin-top: $size-medium;
-            margin-bottom: $size-small;
+            margin-top: variables.$size-medium;
+            margin-bottom: variables.$size-small;
         }
 
         input {
@@ -54,21 +57,21 @@
         input,
         textarea {
             border-radius: 4px;
-            border: 1px solid $clr-border;
+            border: 1px solid variables.$clr-border;
             font-weight: 300;
             font-size: 1.25em;
-            padding: $size-medium;
+            padding: variables.$size-medium;
             transition: border-color 0.2s;
 
             &:focus-visible {
                 outline: none;
-                border-color: $clr-active;
-                caret-color: $clr-active;
+                border-color: variables.$clr-active;
+                caret-color: variables.$clr-active;
             }
 
             &.invalid-input {
-                border-color: $clr-danger;
-                caret-color: $clr-danger;
+                border-color: variables.$clr-danger;
+                caret-color: variables.$clr-danger;
             }
         }
 
@@ -78,7 +81,7 @@
         }
 
         .btn-send {
-            margin-top: $size-small;
+            margin-top: variables.$size-small;
             @extend .flex;
             @extend .fs-large;
             @extend .reactive-link;
@@ -86,7 +89,7 @@
     }
 
     .main-footer {
-        border-top: 1px solid $clr-border;
+        border-top: 1px solid variables.$clr-border;
         @extend .p-medium;
     }
 }

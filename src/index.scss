@@ -1,8 +1,8 @@
-@import 'styles/base/variables';
-@import 'styles/base/typography';
-@import 'styles/base/reset';
-@import 'styles/base/helpers';
-@import 'styles/base/layout';
+@use 'styles/base/variables';
+@use 'styles/base/typography';
+@use 'styles/base/reset';
+@use 'styles/base/helpers';
+@use 'styles/base/layout';
 
-@import 'styles/main';
-@import 'styles/icon';
+@use 'styles/main';
+@use 'styles/icon';

@@ -1,3 +1,5 @@
+@use 'variables' as variables;
+
 // Flex
 .flex {
     display: flex;
@@ -33,19 +35,19 @@
 // Padding
 .p {
     &-small {
-        padding: $size-small;
+        padding: variables.$size-small;
     }
 
     &-medium {
-        padding: $size-medium;
+        padding: variables.$size-medium;
     }
 
     &-large {
-        padding: $size-large;
+        padding: variables.$size-large;
     }
 
     &-xlarge {
-        padding: $size-xlarge;
+        padding: variables.$size-xlarge;
     }
 
     &-clear {
@@ -56,19 +58,19 @@
 // Margin
 .m {
     &-small {
-        margin: $size-small;
+        margin: variables.$size-small;
     }
 
     &-medium {
-        margin: $size-medium;
+        margin: variables.$size-medium;
     }
 
     &-large {
-        margin: $size-large;
+        margin: variables.$size-large;
     }
 
     &-xlarge {
-        margin: $size-xlarge;
+        margin: variables.$size-xlarge;
     }
 
     &-clear {
@@ -79,19 +81,19 @@
 // font-Size
 .fs {
     &-small {
-        font-size: $size-small;
+        font-size: variables.$size-small;
     }
 
     &-medium {
-        font-size: $size-medium;
+        font-size: variables.$size-medium;
     }
 
     &-large {
-        font-size: $size-large;
+        font-size: variables.$size-large;
     }
 
     &-xlarge {
-        font-size: $size-xlarge;
+        font-size: variables.$size-xlarge;
     }
 }
 
@@ -116,11 +118,11 @@
     }
 
     &-border {
-        color: $clr-border;
+        color: variables.$clr-border;
     }
 
     &-active {
-        color: $clr-active;
+        color: variables.$clr-active;
     }
 }
 
@@ -138,7 +140,7 @@
     }
 
     &-danger {
-        color: $clr-danger;
+        color: variables.$clr-danger;
     }
 }
 
