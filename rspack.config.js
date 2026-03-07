@@ -38,7 +38,7 @@ module.exports = {
             },
             {
                 test: /\.s[ac]ss$/i,
-                type: 'css',
+                type: 'css/auto',
                 use: [
                     {
                         loader: 'sass-loader',
@@ -64,12 +64,14 @@ module.exports = {
     },
     output: {
         filename: 'build.js',
+        cssFilename: 'build.css',
         path: path.resolve(__dirname, 'build'),
     },
     builtins: {
         html: [
             {
                 template: path.join(__dirname, 'public', 'index.html'),
+                favicon: path.join(__dirname, 'public', 'favicon.ico'),
             },
         ],
         define: {
