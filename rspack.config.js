@@ -1,4 +1,5 @@
 const path = require('path');
+const rspack = require('@rspack/core');
 
 require('dotenv').config();
 
@@ -70,17 +71,15 @@ module.exports = {
         cssFilename: 'build.css',
         path: path.resolve(__dirname, 'build'),
     },
-    builtins: {
-        html: [
-            {
-                template: path.join(__dirname, 'public', 'index.html'),
-                favicon: path.join(__dirname, 'public', 'favicon.ico'),
-            },
-        ],
-        define: {
+    plugins: [
+        new rspack.HtmlRspackPlugin({
+            template: path.join(__dirname, 'public', 'index.html'),
+            favicon: path.join(__dirname, 'public', 'favicon.ico'),
+        }),
+        new rspack.DefinePlugin({
             'process.env.EMAILJS_SERVICEID': JSON.stringify(process.env.EMAILJS_SERVICEID),
             'process.env.EMAILJS_TEMPLATEID': JSON.stringify(process.env.EMAILJS_TEMPLATEID),
             'process.env.EMAILJS_USERID': JSON.stringify(process.env.EMAILJS_USERID),
-        },
-    },
+        }),
+    ],
 };
